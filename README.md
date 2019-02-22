@@ -68,7 +68,8 @@ Password: hdppassword
 
 ### Miscellaneous information
 * You can login as root user into namenode using "docker exec -it namenode bash"
-* Start HBase manually by logging in as root (as described above) and executing the command "$HBASE_HOME/bin/start-hbase.sh"
+* To start HBase manually, log in as root (as described above) and executing the command "$HBASE_HOME/bin/start-hbase.sh"
+* To start Kafka manually, log in as root (as described above) and executing the command "$KAFKA_HOME/bin/kafka-server-start.sh -daemon $KAFKA_HOME/config/server.properties"
 * Kafka topics can be created by "hdpuser" with root priviledges
 ```
 sudo $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper namenode:2181 --replication-factor 1 --partitions 1 --topic test
@@ -76,9 +77,9 @@ sudo $KAFKA_HOME/bin/kafka-topics.sh --create --zookeeper namenode:2181 --replic
 
 ### Known issues
 * Spark application master is not reachable from host system
-* HBase has to be manually started
+* HBase and Kafka services do not start automatically sometimes (increasing memory of the container might solve this issue)
 * No proper PySpark setup
-* Unable to get Hive to work on Tez
+* Unable to get Hive to work on Tez (current default MapReduce)
 
 # Credits
 * SequenceIQ - [https://github.com/sequenceiq](https://github.com/sequenceiq)
