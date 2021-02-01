@@ -15,7 +15,7 @@ fi
 echo "Check existing namenode container..."
 if  ! docker container ls -a | grep -q 'namenode'; then
     echo "Creating namenode container..."
-    docker create -it -p 8088:8088 -p 4040:4040 -p 50070:50070 -p 50075:50075 -p 2122:2122 --net hadoop --name namenode --hostname namenode --memory 1024m --cpus 2 karthikmlore/hadoop_cluster
+    docker create -it -p 8088:8088 -p 4040:4040 -p 50070:50070 -p 50075:50075 -p 2122:2122 --net hadoop --name namenode --hostname namenode --memory 2048m --cpus 2 karthikmlore/hadoop_cluster
 else
     echo "Namenode container exists"
 fi
@@ -27,7 +27,7 @@ do
     echo "Check existing datanode$i container..."
     if  ! docker container ls -a | grep -q "datanode$i"; then
         echo "Creating and starting datanode$i container..."
-        docker run -itd --name datanode$i --net hadoop --hostname datanode$i --memory 1024m --cpus 2 karthikmlore/hadoop_cluster
+        docker run -itd --name datanode$i --net hadoop --hostname datanode$i --memory 2048m --cpus 2 karthikmlore/hadoop_cluster
     else
         echo "Starting datanode$i container"
         docker start datanode$i
